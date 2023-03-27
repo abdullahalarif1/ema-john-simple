@@ -1,0 +1,43 @@
+.card {
+  border: 1px solid lightgray;
+  border-radius: 8px;
+  height: 560px;
+  position: relative;
+
+}
+
+button {
+  background: #ffe0b3;
+  border: 1px solid #95a0a7;
+  border-radius: 0px 0px 8px 8px;
+  width: 100%;
+  padding: 10px;
+  position: absolute;
+  bottom: 0;
+}
+
+.card img {
+  padding: 5px;
+  border-radius: 8px;
+}
+
+.product-name {
+  margin: 0;
+  font-style: normal;
+  font-size: 21px;
+  line-height: 25px;
+  letter-spacing: 0.0015em;
+  font-weight: bold;
+  color: #0e161a;
+  padding: 0 10px;
+}
+
+.product-info{
+    margin-left: 10px;
+}
+
+span svg{
+    width: 21px;
+    height: 13px;
+    
+}
