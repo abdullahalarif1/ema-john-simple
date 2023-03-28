@@ -1,0 +1,18 @@
+.cart-info p {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 20px;
+  letter-spacing: 0.005em;
+
+  color: #2a414f;
+}
+h3 {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 25px;
+  line-height: 30px;
+  /* identical to box height */
+  
+  color: #1c2b35;
+}

@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
+import Cart from "../Cart/Cart";
 import Products from "../Products/Products";
+import { addToDb, getShoppingCart } from "../utilities/fakedb";
 import "./Shop.css";
 
 const Shop = () => {
@@ -12,12 +14,22 @@ const Shop = () => {
       .then((data) => setProducts(data));
   }, []);
 
+  useEffect(() => {
+    const storedCart = getShoppingCart()
+    console.log(storedCart)
+  },[])
+
   // event handler and create new cart for order summary
   const addToCart = (product) => {
     console.log(product);
     const newCart = [...cart, product];
     setCart(newCart);
+    // click korle local storage e store hobe tai addToDb import korlam
+    addToDb(product.id)
   };
+
+
+  // ------------------------ return -------------------------------
   return (
     <div className="shop-container">
       
@@ -35,9 +47,8 @@ const Shop = () => {
       </div>
 
       {/*--------------- order summary------------------ */}
-      <div className="order-summary" style={{ textAlign: "center" }}>
-        <h3>Order Summary</h3>
-        <h5>Cart : {cart.length}</h5>
+      <div className="order-summary" >
+        <Cart cart={cart}></Cart>
       </div>
     </div>
   );

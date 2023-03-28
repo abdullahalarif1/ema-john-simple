@@ -1,13 +1,19 @@
-.shop-container{
-    display: grid;
-    grid-template-columns: 4fr 1fr ;
-    padding: 20px;
-
+.shop-container {
+  display: grid;
+  grid-template-columns: 4fr 1fr;
 }
 
-.product-container{
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-    gap: 40px;
-    
+.product-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  padding: 20px;
+}
+
+.order-summary {
+  position: sticky;
+  top: 0;
+  background-color: aqua;
+  background:rgba(255, 153, 0, 0.3);
+  height: 100vh;
 }
