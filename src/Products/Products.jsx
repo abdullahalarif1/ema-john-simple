@@ -18,7 +18,7 @@ const Products = (props) => {
           <small>Rating: {ratings}</small>
         </p>
       </div>
-      <button onClick={() => addToCart(props.product)}>
+      <button className="btn" onClick={() => addToCart(props.product)}>
         Add to Cart{" "}
         <span>
           <svg

@@ -1,35 +1,39 @@
 import React, { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
 
-const Login = () => {
+const SignUp = () => {
   const [error, setError] = useState("");
-  const { signIn } = useContext(AuthContext);
-  const navigate = useNavigate()
+  const { createUser } = useContext(AuthContext);
 
-  // handle sign up button
-  const handleSignUpBtn = (e) => {
+  const handleLogInBtn = (e) => {
     e.preventDefault();
 
     const email = e.target.email.value;
     const password = e.target.password.value;
-    console.log(email, password);
-    setError("");
+    const confirmPassword = e.target.confirm.value;
+    console.log(email, password, confirmPassword);
+    setError('')
+    if (password !== confirmPassword) {
+      setError("your password did not match");
+      return;
+    } else if (password.length < 6) {
+      setError("Password must be 6 characters or longer");
+      return;
+    }
     // for firebase
-    signIn(email, password)
-      .then((result) => {
-        const loggedUser = result.user;
-        console.log(loggedUser);
-        e.target.reset();
-        setError("");
-        navigate('/')
-      })
-      .catch((error) => {
+    createUser(email, password)
+    .then(result => {
+      const loggedUser = result.user
+      console.log(loggedUser);
+      e.target.reset()
+      setError('')
+    })
+    .catch(error => {
         console.log(error.message);
-        setError(error);
-      });
+        setError(error.message)
+    })
   };
-
   return (
     <div
       style={{
@@ -39,13 +43,14 @@ const Login = () => {
       }}
     >
       <div style={{ padding: "20px" }}>
-        <h2>Please Login</h2>
-        <form onSubmit={handleSignUpBtn}>
+        <h2>Please Sign Up</h2>
+        <form onSubmit={handleLogInBtn}>
           <label htmlFor="">Email</label> <br />
           <input
             style={{
               width: "100%",
-              padding: "10px 0",
+              padding: "10px 0 ",
+              paddingLeft: "5px",
               border: "1px solid lightgray",
               marginBottom: "10px",
             }}
@@ -62,10 +67,28 @@ const Login = () => {
             style={{
               width: "100%",
               padding: "10px 0",
+              paddingLeft: "5px",
               border: "1px solid lightgray",
+              marginBottom: "10px",
             }}
             type="password"
             name="password"
+            id=""
+          />{" "}
+          <br />
+          <label style={{ marginTop: "10px" }} htmlFor="">
+            Confirm Password
+          </label>{" "}
+          <br />
+          <input
+            style={{
+              width: "100%",
+              padding: "10px 0",
+              paddingLeft: "5px",
+              border: "1px solid lightgray",
+            }}
+            type="password"
+            name="confirm"
             id=""
           />{" "}
           <br />
@@ -78,11 +101,11 @@ const Login = () => {
               background: "#FFE0B3",
             }}
           >
-            Login
+            Sign Up
           </button>
           <p>
             <small>
-              New to ema john?<Link to="/register">Sign Up</Link>
+              Already have an account?<Link to="/login">Login</Link>
             </small>
           </p>
           <p style={{ color: "red" }}>
@@ -94,4 +117,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default SignUp;

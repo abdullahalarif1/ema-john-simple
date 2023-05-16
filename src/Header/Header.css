@@ -17,3 +17,10 @@ padding-left: 30px;
 color: #FFFFFF;
 
 }
+
+.nav-items span{
+    margin-left: 15px;
+    font-size: 14px;
+    font-weight: 400;
+    color: #FFFFFF;
+}
